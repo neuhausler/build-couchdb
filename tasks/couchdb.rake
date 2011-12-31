@@ -6,7 +6,7 @@ require 'fileutils'
 
 namespace :couchdb do
 
-  couchdb_build_deps = ['erlang:build', 'build:couch_git_submodules', 'build:os_dependencies', 'tracemonkey:build', 'icu:build', 'curl:build', :known_distro, 'environment:path']
+  couchdb_build_deps = [ 'build:couch_git_submodules', 'build:os_dependencies', 'tracemonkey:build', 'icu:build', 'curl:build', :known_distro, 'environment:path']
 
   desc 'Build the requirements for CouchDB'
   task :deps => couchdb_build_deps
@@ -22,10 +22,6 @@ namespace :couchdb do
     if ENV['wipe_otp_keep']
       puts "Clearing otp_keep for :clean_install"
       ENV.delete("otp_keep")
-    end
-
-    %w[ erlang toolchain ].each do |section|
-      run_task "#{section}:clean"
     end
 
     %w[ include ].each do |dir|

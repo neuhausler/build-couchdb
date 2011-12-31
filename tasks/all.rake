@@ -17,7 +17,7 @@ namespace :build do
   task :ruby_inabox => :couchdb
 
   # Submodules
-  submodules = ["#{DEPS}/otp/otp_build", "#{DEPS}/couchdb/bootstrap"]
+  submodules = ["#{DEPS}/couchdb/bootstrap"]
   submodules.each do |submodule_file|
     file submodule_file do
       human_friendly = File.dirname(submodule_file)
@@ -26,7 +26,6 @@ namespace :build do
   end
 
   task :couch_git_submodules => ["#{DEPS}/couchdb/bootstrap"]
-  task :otp_git_submodules => ["#{DEPS}/otp/otp_build"]
 
   desc 'Confirm (and install if possible) the OS dependencies'
   task :os_dependencies => [:mac_dependencies, :ubuntu_dependencies, :debian_dependencies, :opensuse_dependencies, :solaris_dependencies]
